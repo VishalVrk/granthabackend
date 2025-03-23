@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware  # Import CORS middleware
 import openai
 from PIL import Image
 import io
@@ -7,6 +8,15 @@ import base64
 from dotenv import load_dotenv
 
 app = FastAPI()
+
+# Allow all origins, methods, and headers (Modify this for security if needed)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change to specific domains for better security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 load_dotenv()
 
@@ -28,6 +38,7 @@ async def extract_text(image: UploadFile = File(...)):
 
     # Debug: Print first 100 characters of Base64 to verify
     print(image_base64[:100])
+    
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -46,6 +57,5 @@ async def extract_text(image: UploadFile = File(...)):
     grantha_text = response.choices[0].message.content.strip()
     print(grantha_text)
     print(response)
-
 
     return {"extracted_text": grantha_text}
