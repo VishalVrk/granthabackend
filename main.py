@@ -30,7 +30,7 @@ async def extract_text(image: UploadFile = File(...)):
     print(image_base64[:100])
 
     response = client.chat.completions.create(
-        model="gpt-4-turbo-vision",  # Updated model
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are an OCR assistant. Extract text from images accurately."},
             {
