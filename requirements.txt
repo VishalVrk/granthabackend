@@ -4,3 +4,4 @@ python-dotenv
 openai
 pillow
 gunicorn
+python-multipart
