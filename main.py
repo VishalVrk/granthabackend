@@ -42,7 +42,7 @@ async def extract_text(image: UploadFile = File(...)):
                 "role": "user",
                 "content": [
                     {"type": "text", "text": "Extract and return the text from this image."},
-                    {"type": "image_url", "image_url": f"data:image/jpeg;base64,{image_base64}"}
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}}
                 ]
             }
         ],
