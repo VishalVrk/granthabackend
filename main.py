@@ -40,7 +40,7 @@ async def extract_text(image: UploadFile = File(...)):
     print(image_base64[:100])
     
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are an expert in ancient scripts. Convert handwritten Malayalam or Tamil text into Grantha script."},
             {
